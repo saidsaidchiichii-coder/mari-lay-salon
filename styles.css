@@ -1,0 +1,157 @@
+/* ==========================================================================
+   MARI LAY BEAUTY CENTER - PREMIUM STYLE SHEET
+   ========================================================================== */
+
+/* Base overrides and layout */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(247, 203, 208, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: #f46f7c;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e04554;
+}
+
+/* ==========================================================================
+   3D PERSPECTIVE & TRANSFORMS SYSTEM
+   ========================================================================== */
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* 3D Glassmorphism tilt card look */
+#hero-3d-card, #instagram-3d-card {
+  transform: rotateX(10deg) rotateY(-5deg);
+  transition: transform 0.1s ease-out, shadow 0.3s ease;
+}
+
+/* Glow colors */
+.shadow-rose-glow {
+  box-shadow: 0 10px 30px -10px rgba(244, 111, 124, 0.4);
+}
+.shadow-gold-glow {
+  box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.3);
+}
+
+/* ==========================================================================
+   3D ROTATING CAROUSEL (THE VIRTUAL TOUR)
+   ========================================================================== */
+
+#carousel-3d-stage {
+  /* Dynamic radius is handled programmatically in app.js */
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.carousel-item-3d {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.8s ease;
+}
+
+/* Slide item border highlights on hover */
+.carousel-item-3d::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 1rem;
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+}
+.carousel-item-3d:hover::after {
+  border-color: rgba(212, 175, 55, 0.8);
+}
+
+/* ==========================================================================
+   3D STACKED ABOUT CARDS
+   ========================================================================== */
+
+.active-3d-stack-card {
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), z-index 0.3s, shadow 0.3s;
+}
+
+/* Interactive hover spread effect */
+.perspective-1000:hover .active-3d-stack-card:nth-child(1) {
+  transform: rotateX(5deg) rotateY(-15deg) translateZ(10px) translateX(-70px) translateY(10px);
+}
+.perspective-1000:hover .active-3d-stack-card:nth-child(2) {
+  transform: rotateX(5deg) rotateY(15deg) translateZ(30px) translateX(70px) translateY(-10px);
+}
+.perspective-1000:hover .active-3d-stack-card:nth-child(3) {
+  transform: rotateX(10deg) rotateY(0deg) translateZ(60px) scale(1.05);
+}
+
+/* ==========================================================================
+   ANIMATIONS & TRANSITIONS
+   ========================================================================== */
+
+/* Smooth fade-in-up for heroes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3D Hover tilt cards */
+.service-3d-card {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+}
+.service-3d-card:hover {
+  transform: translateY(-8px) rotateX(4deg) rotateY(2deg) scale(1.02);
+  border-color: rgba(244, 111, 124, 0.3);
+}
+
+/* Table wrapper styles */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide native scrollbars but keep functionality */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

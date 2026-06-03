@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mari Lay - Centre de Beauté & Esthétique Médicale à Tétouan</title>
+  
+  <!-- Tailwind CSS v4 -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.0/dist/index.global.js"
+    integrity="sha384-nWTzRTCY/9V4Bo352ehygr1c4cnst4XN6lMR3fipakEQrhVpc0hEM5Dii3Amz0sT"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Google Fonts: Playfair Display for Serifs, Plus Jakarta Sans for Body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Tajawal:wght@200;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Custom Variables & Utilities -->
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+    
+    :root {
+      --color-rose-gold-50: #fff5f6;
+      --color-rose-gold-100: #ffebeb;
+      --color-rose-gold-200: #ffd1d4;
+      --color-rose-gold-300: #ffa3aa;
+      --color-rose-gold-400: #f46f7c;
+      --color-rose-gold-500: #e04554;
+      --color-rose-gold-600: #c92f3e;
+      --color-rose-gold-700: #a9202e;
+      --color-gold-warm: #d4af37;
+      --color-gold-hover: #c19e2e;
+      --font-serif: 'Playfair Display', 'Tajawal', serif;
+      --font-sans: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+    }
+    
+    h1, h2, h3, h4, .font-serif {
+      font-family: var(--font-serif);
+    }
+  </style>
+
+  <!-- Auto Dark Mode detection (OS preferred) -->
+  <script>
+    document.documentElement.classList.toggle(
+      'dark',
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    );
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-dvh bg-gradient-to-b from-rose-gold-50 to-white text-gray-800 dark:from-neutral-950 dark:to-neutral-900 dark:text-neutral-100 transition-colors duration-500 overflow-x-hidden">
+
+  <!-- Floating Glow Orbs for 3D atmospheric depth -->
+  <div class="fixed -top-40 -left-40 w-96 h-96 bg-pink-300/30 dark:bg-pink-900/10 rounded-full blur-3xl pointer-events-none z-0 animate-pulse"></div>
+  <div class="fixed top-1/2 -right-40 w-96 h-96 bg-amber-200/20 dark:bg-amber-900/10 rounded-full blur-3xl pointer-events-none z-0 animate-pulse" style="animation-delay: 2s;"></div>
+  <div class="fixed -bottom-40 left-1/3 w-96 h-96 bg-rose-300/20 dark:bg-rose-900/10 rounded-full blur-3xl pointer-events-none z-0 animate-pulse" style="animation-delay: 4s;"></div>
+
+  <div id="app" class="relative z-10">
+    
+    <!-- Navbar -->
+    <nav class="sticky top-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-neutral-950/70 border-b border-rose-gold-200/20 dark:border-neutral-800 transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 dark:border-amber-500 shadow-md relative bg-white transition-transform duration-500 group-hover:scale-105">
+            <img src="images/logo.jpg" alt="Mari Lay Logo" class="w-full h-full object-cover mix-blend-multiply dark:filter dark:brightness-110">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold tracking-widest text-neutral-900 dark:text-white font-serif">Mari Lay</span>
+            <span class="text-xs uppercase tracking-widest text-rose-500 dark:text-amber-400 font-sans font-semibold">Makeup Artist & Beauté</span>
+          </div>
+        </a>
+
+        <!-- Menu Desktop -->
+        <div class="hidden md:flex items-center gap-8 font-medium">
+          <a href="#about" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">À Propos</a>
+          <a href="#services" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Services</a>
+          <a href="#gallery-3d" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Visite 3D</a>
+          <a href="#instagram" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Instagram</a>
+          <a href="#contact" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Contact</a>
+        </div>
+
+        <!-- Right: Language and Booking CTA -->
+        <div class="flex items-center gap-4">
+          <!-- Toggle Dark Mode -->
+          <button id="theme-toggle" class="p-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:scale-110 transition-all">
+            <i data-lucide="sun" class="hidden dark:block w-5 h-5"></i>
+            <i data-lucide="moon" class="block dark:hidden w-5 h-5"></i>
+          </button>
+          
+          <a href="https://wa.me/212668500684" target="_blank" class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 dark:from-amber-500 dark:to-amber-600 dark:hover:from-amber-600 dark:hover:to-amber-700 text-white font-semibold tracking-wide shadow-lg hover:shadow-rose-500/20 dark:hover:shadow-amber-500/20 transform hover:-translate-y-0.5 transition-all text-xs">
+            <i data-lucide="phone-call" class="w-4 h-4"></i>
+            <span>Réserver maintenant</span>
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button id="menu-btn" class="md:hidden p-2 rounded-lg text-neutral-700 dark:text-neutral-300">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-neutral-100 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 transition-all duration-300 px-4 py-4 space-y-3">
+        <a href="#about" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">À Propos</a>
+        <a href="#services" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Services</a>
+        <a href="#gallery-3d" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Visite 3D</a>
+        <a href="#instagram" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Instagram</a>
+        <a href="#contact" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Contact</a>
+        <a href="https://wa.me/212668500684" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-rose-500 dark:bg-amber-500 text-white font-bold text-center">
+          <i data-lucide="phone-call" class="w-4 h-4"></i>
+          <span>Réserver (WhatsApp)</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Section 1: Hero Section with Interactive 3D Parallax -->
+    <header class="relative min-h-[90dvh] flex items-center justify-center overflow-hidden py-12 px-4">
+      <!-- 3D Perspective Grid Background (Interactive floating particles) -->
+      <div class="absolute inset-0 z-0 opacity-20 dark:opacity-10 pointer-events-none perspective-1000">
+        <div class="w-full h-full bg-[linear-gradient(to_right,#f2d1d4_1px,transparent_1px),linear-gradient(to_bottom,#f2d1d4_1px,transparent_1px)] bg-[size:4rem_4rem] [transform:rotateX(60deg)_translateY(-10%)] origin-top"></div>
+      </div>
+
+      <!-- Main Hero 3D Card Container -->
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
+        
+        <!-- Left Column: Elegant Copy & Hook -->
+        <div class="lg:col-span-6 space-y-6 text-center lg:text-left transform translate-y-10 opacity-0 animate-fade-in-up">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100/80 dark:bg-amber-500/10 border border-rose-200/50 dark:border-amber-500/20 text-rose-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            L'excellence de la beauté à Tétouan
+          </span>
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-neutral-950 dark:text-white font-serif">
+            Mari Lay <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-rose-600 to-amber-500 dark:from-rose-400 dark:to-amber-300">
+              Centre de Beauté
+            </span>
+          </h1>
+          <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed">
+            Découvrez un havre de paix où la médecine esthétique rencontre la beauté artistique. Esthétique médicale, soins complets, épilation laser de dernière génération, et hijama traditionnelle à Tétouan.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+            <a href="#services" class="group flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 font-bold tracking-wide shadow-xl hover:scale-[1.03] transition-all duration-300">
+              <span>Découvrir nos services</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </a>
+            <a href="https://wa.me/212668500684" target="_blank" class="flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-neutral-200 dark:border-neutral-800 hover:border-rose-400 dark:hover:border-amber-400 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm text-neutral-800 dark:text-neutral-200 font-bold tracking-wide hover:scale-[1.03] transition-all duration-300">
+              <i data-lucide="message-circle" class="w-5 h-5 text-green-500"></i>
+              <span>Nous contacter</span>
+            </a>
+          </div>
+
+          <!-- Live Trust Badges -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-neutral-200/50 dark:border-neutral-800/50 max-w-md mx-auto lg:mx-0 text-left">
+            <div>
+              <div class="text-2xl font-bold font-serif text-rose-600 dark:text-amber-400">116K+</div>
+              <div class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Abonnés Instagram</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold font-serif text-neutral-900 dark:text-white">100%</div>
+              <div class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Soins de Qualité</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold font-serif text-neutral-900 dark:text-white">Tétouan</div>
+              <div class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Adresse Centrale</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive 3D Floating Salon Card -->
+        <div class="lg:col-span-6 flex justify-center items-center relative perspective-1000 py-12">
+          <!-- 3D Shadow Backdrop -->
+          <div class="absolute w-[80%] h-[80%] bg-rose-200/40 dark:bg-rose-900/10 rounded-3xl blur-2xl [transform:translateZ(-100px)]"></div>
+          
+          <!-- Interactive 3D Card (Tilt effect added in JS) -->
+          <div id="hero-3d-card" class="relative w-full max-w-[420px] aspect-[4/5] rounded-3xl bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-white dark:border-neutral-800 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] overflow-hidden preserve-3d transition-transform duration-100 flex flex-col cursor-grab active:cursor-grabbing">
+            <!-- Glassmorphism layer reflection -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none z-20"></div>
+
+            <!-- Header of the 3D Card -->
+            <div class="p-6 pb-4 flex items-center justify-between z-10">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full border border-amber-400 overflow-hidden bg-white">
+                  <img src="images/logo.jpg" alt="Mari Lay" class="w-full h-full object-cover mix-blend-multiply">
+                </div>
+                <div>
+                  <h4 class="font-bold text-neutral-900 dark:text-white text-sm font-serif">Mari Lay</h4>
+                  <p class="text-[10px] text-neutral-500 dark:text-amber-400 font-bold uppercase tracking-widest">Salon de Beauté</p>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold text-[10px] tracking-wide animate-pulse">Ouvert</span>
+            </div>
+
+            <!-- Center Image inside the 3D card -->
+            <div class="flex-1 px-6 relative z-10 group overflow-hidden">
+              <div class="w-full h-full rounded-2xl overflow-hidden shadow-inner relative">
+                <img src="images/interior_1.jpg" alt="Mari Lay Salon" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <!-- Glowing gold corner accent -->
+                <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur-md px-3 py-1.5 rounded-full text-white text-xs font-semibold flex items-center gap-1.5 border border-white/10">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i>
+                  <span>Tétouan, Maroc</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer of the 3D card with info badge -->
+            <div class="p-6 pt-4 flex items-center justify-between z-10">
+              <div class="flex flex-col">
+                <span class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Ambiance chaleureuse</span>
+                <span class="text-sm font-bold text-neutral-900 dark:text-white font-serif">Esthétique de Prestige</span>
+              </div>
+              <a href="#gallery-3d" class="p-3 bg-gradient-to-r from-rose-400 to-rose-500 dark:from-amber-400 dark:to-amber-500 text-white dark:text-neutral-900 rounded-full shadow-lg hover:scale-110 transition-all">
+                <i data-lucide="view" class="w-5 h-5"></i>
+              </a>
+            </div>
+
+            <!-- Floating 3D Sparkle Accessories (Absolute positioned outside the card bounding but inside perspective) -->
+            <div class="absolute -top-6 -right-6 w-12 h-12 bg-white dark:bg-neutral-800 rounded-2xl shadow-lg border border-neutral-100 dark:border-neutral-700 flex items-center justify-center [transform:translateZ(40px)] animate-bounce z-20" style="animation-duration: 4s;">
+              <i data-lucide="star" class="w-6 h-6 text-amber-400 fill-amber-400"></i>
+            </div>
+            <div class="absolute -bottom-4 -left-4 w-14 h-14 bg-white dark:bg-neutral-800 rounded-full shadow-lg border border-neutral-100 dark:border-neutral-700 flex items-center justify-center [transform:translateZ(50px)] animate-pulse z-20">
+              <i data-lucide="heart" class="w-6 h-6 text-rose-500 fill-rose-500"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Section 2: About the Salon with 3D Layered Gallery -->
+    <section id="about" class="py-24 bg-white dark:bg-neutral-950 relative overflow-hidden transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          <!-- Left: 3D Stacked Images (Interactive on hover, spreading out) -->
+          <div class="lg:col-span-6 relative flex justify-center items-center h-[450px] md:h-[500px] perspective-1000 z-10">
+            <!-- Background Decoration Sheet -->
+            <div class="absolute -left-6 bottom-0 w-48 h-48 bg-amber-400/10 rounded-full blur-2xl"></div>
+
+            <!-- Image Card 1 (Bottom, tilted left) -->
+            <div class="absolute w-[240px] sm:w-[280px] aspect-[4/5] rounded-2xl overflow-hidden shadow-xl border border-white dark:border-neutral-800 transition-all duration-500 origin-center rotate-[-12deg] -translate-x-12 translate-y-6 hover:rotate-0 hover:translate-x-0 hover:-translate-y-4 hover:z-30 cursor-pointer group active-3d-stack-card" style="transform-style: preserve-3d; z-index: 10;">
+              <img src="images/interior_5.jpg" alt="Salon Wide View" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-neutral-950/20 flex items-end p-4">
+                <span class="text-white text-xs font-bold tracking-widest uppercase">Espace d'attente VIP</span>
+              </div>
+            </div>
+
+            <!-- Image Card 2 (Middle, tilted right) -->
+            <div class="absolute w-[240px] sm:w-[280px] aspect-[4/5] rounded-2xl overflow-hidden shadow-xl border border-white dark:border-neutral-800 transition-all duration-500 origin-center rotate-[8deg] translate-x-12 translate-y-[-6deg] hover:rotate-0 hover:translate-x-0 hover:-translate-y-4 hover:z-30 cursor-pointer group active-3d-stack-card" style="transform-style: preserve-3d; z-index: 15;">
+              <img src="images/interior_6.jpg" alt="Interior Details" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-neutral-950/20 flex items-end p-4">
+                <span class="text-white text-xs font-bold tracking-widest uppercase">Détails Luxueux</span>
+              </div>
+            </div>
+
+            <!-- Image Card 3 (Top, Center, Flat) -->
+            <div class="absolute w-[240px] sm:w-[280px] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-2 border-amber-400 dark:border-amber-500 transition-all duration-500 origin-center translate-y-12 hover:-translate-y-4 hover:scale-[1.02] cursor-pointer group active-3d-stack-card" style="transform-style: preserve-3d; z-index: 20;">
+              <img src="images/interior_1.jpg" alt="Makeup Area" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/60 to-transparent flex items-end p-6">
+                <div>
+                  <span class="text-amber-400 text-xs font-extrabold tracking-widest uppercase">Postes de Maquillage</span>
+                  <h4 class="text-white text-base font-bold font-serif">Mari Lay Tétouan</h4>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Hover Instruct Badge -->
+            <div class="absolute bottom-0 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 px-4 py-2 rounded-full shadow-lg text-xs font-semibold text-rose-500 dark:text-amber-400 flex items-center gap-1.5 animate-bounce z-45">
+              <i data-lucide="hand-metal" class="w-4 h-4 animate-spin" style="animation-duration: 6s;"></i>
+              <span>Survolez les photos pour les étaler</span>
+            </div>
+          </div>
+
+          <!-- Right: Narrative content -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="space-y-2">
+              <span class="text-rose-500 dark:text-amber-400 font-bold tracking-widest text-xs uppercase block">À PROPOS DE NOUS</span>
+              <h2 class="text-3xl sm:text-4xl font-bold font-serif text-neutral-900 dark:text-white leading-tight">
+                L'Art de Sublimer <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-amber-500 dark:from-rose-400 dark:to-amber-400">Votre Beauté Naturelle</span>
+              </h2>
+            </div>
+            
+            <p class="text-neutral-600 dark:text-neutral-300 leading-relaxed font-sans text-sm sm:text-base">
+              Au cœur de Tétouan, <strong>Mari Lay</strong> n'est pas seulement un salon de beauté, c'est un institut d'excellence. Dirigé par une artiste maquilleuse renommée, notre centre allie les techniques esthétiques médicales les plus avancées à l'art traditionnel du bien-être pour vous offrir des résultats inégalés.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+              <!-- Feature 1 -->
+              <div class="flex gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-rose-100 dark:bg-neutral-900 flex items-center justify-center text-rose-500 dark:text-amber-400 border border-rose-200/50 dark:border-neutral-800">
+                  <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-neutral-900 dark:text-white font-serif">Abonnées Passionnées</h4>
+                  <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Une communauté de 116,000+ passionnées de maquillage et de soins de peau.</p>
+                </div>
+              </div>
+
+              <!-- Feature 2 -->
+              <div class="flex gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-amber-100 dark:bg-neutral-900 flex items-center justify-center text-amber-500 dark:text-amber-400 border border-amber-200/50 dark:border-neutral-800">
+                  <i data-lucide="shield-check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-neutral-900 dark:text-white font-serif">Esthétique Médicale</h4>
+                  <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Des soins complets sous protocole médical de pointe (Hydrafacial, PRP, Laser).</p>
+                </div>
+              </div>
+
+              <!-- Feature 3 -->
+              <div class="flex gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-pink-100 dark:bg-neutral-900 flex items-center justify-center text-pink-500 dark:text-amber-400 border border-pink-200/50 dark:border-neutral-800">
+                  <i data-lucide="infinity" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-neutral-900 dark:text-white font-serif">Hijama & Bien-être</h4>
+                  <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">L'alliance de l'acupuncture traditionnelle et de la hijama médicale.</p>
+                </div>
+              </div>
+
+              <!-- Feature 4 -->
+              <div class="flex gap-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-emerald-100 dark:bg-neutral-900 flex items-center justify-center text-emerald-500 dark:text-amber-400 border border-emerald-200/50 dark:border-neutral-800">
+                  <i data-lucide="instagram" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-neutral-900 dark:text-white font-serif">Transparence Instagram</h4>
+                  <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Tous nos résultats réels, vidéos et témoignages sont visibles en ligne.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <a href="https://wa.me/212668500684" target="_blank" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white font-bold tracking-wide shadow-lg shadow-rose-500/10 transform hover:-translate-y-0.5 transition-all">
+                <i data-lucide="phone" class="w-4 h-4"></i>
+                <span>Discuter avec l'équipe</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Detailed Services (3D Fold-In perspective layout on Scroll) -->
+    <section id="services" class="py-24 bg-gradient-to-b from-white to-rose-50/50 dark:from-neutral-950 dark:to-neutral-900 relative transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header Section -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span class="text-rose-500 dark:text-amber-400 font-bold tracking-widest text-xs uppercase block">NOTRE CARTE DE SOINS</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-serif text-neutral-900 dark:text-white leading-tight">
+            Des Services d’Excellence <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-rose-600 to-amber-500 dark:from-rose-400 dark:to-amber-400">Pour Tous Vos Besoins</span>
+          </h2>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 font-sans max-w-xl mx-auto">
+            Nous avons compilé chaque service de notre centre pour vous offrir une expérience beauté haut de gamme, médicale et holistique.
+          </p>
+        </div>
+
+        <!-- Services Grid (Each category is a beautiful 3D Card with 3D Tilt & fold effect) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-1000">
+
+          <!-- Service 1: Esthétique Médicale -->
+          <div class="service-3d-card group rounded-3xl bg-white dark:bg-neutral-900/80 border border-rose-100 dark:border-neutral-800 p-6 shadow-xl hover:shadow-rose-500/10 dark:hover:shadow-amber-500/5 transition-all duration-300 preserve-3d flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-neutral-800 flex items-center justify-center text-rose-500 dark:text-rose-400 border border-rose-100 dark:border-neutral-700">
+                <i data-lucide="activity" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold font-serif text-neutral-900 dark:text-white">Esthétique Médicale</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Soins dermo-esthétiques hautement performants pour un teint parfait.</p>
+              
+              <ul class="space-y-2 pt-2 text-xs text-neutral-600 dark:text-neutral-300">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400 flex-shrink-0"></i> <span>Hydrafacial complet</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400 flex-shrink-0"></i> <span>Microneedling PRP linen</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400 flex-shrink-0"></i> <span>Plasma pen face & Hair</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400 flex-shrink-0"></i> <span>Radiofréquence visage</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400 flex-shrink-0"></i> <span>Thérapie par LED</span></li>
+              </ul>
+            </div>
+            <a href="https://wa.me/212668500684" target="_blank" class="mt-6 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-neutral-50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs font-bold hover:bg-rose-500 dark:hover:bg-amber-400 hover:text-white dark:hover:text-neutral-950 transition-all">
+              <span>Réserver</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <!-- Service 2: Épilation Laser -->
+          <div class="service-3d-card group rounded-3xl bg-white dark:bg-neutral-900/80 border border-rose-100 dark:border-neutral-800 p-6 shadow-xl hover:shadow-rose-500/10 dark:hover:shadow-amber-500/5 transition-all duration-300 preserve-3d flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-neutral-800 flex items-center justify-center text-amber-500 dark:text-amber-400 border border-amber-100 dark:border-neutral-700">
+                <i data-lucide="zap" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold font-serif text-neutral-900 dark:text-white">Épilation Laser</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Technologie d'épilation laser médicale définitive de dernière génération.</p>
+              
+              <ul class="space-y-2 pt-2 text-xs text-neutral-600 dark:text-neutral-300">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-400 flex-shrink-0"></i> <span>Épilation Laser Intégrale</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-400 flex-shrink-0"></i> <span>Soins Post-Laser apaisants</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-400 flex-shrink-0"></i> <span>Bilan de peau gratuit</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-400 flex-shrink-0"></i> <span>Technologie indolore</span></li>
+              </ul>
+            </div>
+            <a href="https://wa.me/212668500684" target="_blank" class="mt-6 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-neutral-50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs font-bold hover:bg-rose-500 dark:hover:bg-amber-400 hover:text-white dark:hover:text-neutral-950 transition-all">
+              <span>Réserver</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <!-- Service 3: Hijama & Cupping -->
+          <div class="service-3d-card group rounded-3xl bg-white dark:bg-neutral-900/80 border border-rose-100 dark:border-neutral-800 p-6 shadow-xl hover:shadow-rose-500/10 dark:hover:shadow-amber-500/5 transition-all duration-300 preserve-3d flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-neutral-800 flex items-center justify-center text-emerald-500 dark:text-emerald-400 border border-emerald-100 dark:border-neutral-700">
+                <i data-lucide="leaf" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold font-serif text-neutral-900 dark:text-white">Hijama & Cupping</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">L'alliance des bénéfices de la hijama médicale et de l'acupuncture traditionnelle.</p>
+              
+              <ul class="space-y-2 pt-2 text-xs text-neutral-600 dark:text-neutral-300">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0"></i> <span>Hijama Médicale stérile</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0"></i> <span>Fire towel (Serviette de feu)</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0"></i> <span>Acupuncture chinoise</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0"></i> <span>Soins de pieds médicaux</span></li>
+              </ul>
+            </div>
+            <a href="https://wa.me/212668500684" target="_blank" class="mt-6 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-neutral-50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs font-bold hover:bg-rose-500 dark:hover:bg-amber-400 hover:text-white dark:hover:text-neutral-950 transition-all">
+              <span>Réserver</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <!-- Service 4: Makeup & Coiffure -->
+          <div class="service-3d-card group rounded-3xl bg-white dark:bg-neutral-900/80 border border-rose-100 dark:border-neutral-800 p-6 shadow-xl hover:shadow-rose-500/10 dark:hover:shadow-amber-500/5 transition-all duration-300 preserve-3d flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-neutral-800 flex items-center justify-center text-purple-500 dark:text-purple-400 border border-purple-100 dark:border-neutral-700">
+                <i data-lucide="palette" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold font-serif text-neutral-900 dark:text-white">Makeup & Soins</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">Création de looks époustouflants par une maquilleuse professionnelle reconnue.</p>
+              
+              <ul class="space-y-2 pt-2 text-xs text-neutral-600 dark:text-neutral-300">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i> <span>Makeup Artist Mariage/Fête</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i> <span>Soins complets du visage</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i> <span>Soins de cheveux & Botox</span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i> <span>Soins des mains & Ongles</span></li>
+              </ul>
+            </div>
+            <a href="https://wa.me/212668500684" target="_blank" class="mt-6 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-neutral-50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs font-bold hover:bg-rose-500 dark:hover:bg-amber-400 hover:text-white dark:hover:text-neutral-950 transition-all">
+              <span>Réserver</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Callout to the door poster showing exact services with pricing and details -->
+        <div class="mt-16 p-8 rounded-3xl bg-neutral-900 dark:bg-neutral-900 text-white border border-amber-400/30 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl"></div>
+          
+          <!-- Poster visual representation (Small mockup) -->
+          <div class="w-full lg:w-1/3 flex justify-center lg:justify-start">
+            <div class="relative w-48 sm:w-56 aspect-[3/4] rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-lg group">
+              <img src="images/services_poster.jpg" alt="Affiche des Services Officielle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-neutral-950/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                <button onclick="openModal('images/services_poster.jpg')" class="px-4 py-2 bg-amber-400 text-neutral-950 font-bold text-xs rounded-full flex items-center gap-1.5 shadow">
+                  <i data-lucide="zoom-in" class="w-4 h-4"></i>
+                  <span>Agrandir l'affiche</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 space-y-4 text-center lg:text-left">
+            <span class="text-amber-400 font-extrabold text-xs tracking-wider uppercase">VOTRE BIEN-ÊTRE NATUREL</span>
+            <h3 class="text-2xl sm:text-3xl font-bold font-serif text-white">Médecine Traditionnelle Chinoise & Hijama</h3>
+            <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-2xl">
+              Nous appliquons des techniques authentiques de Hijama et de cupping médicale. Nos protocoles incluent l'utilisation de serviettes de feu (fire towel), l'acupuncture fine chinoise et la micro-acupuncture pour stimuler l'énergie naturelle et soulager les douleurs musculaires, la fatigue et le stress.
+            </p>
+            <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
+              <span class="px-3 py-1 bg-neutral-800 rounded-full text-amber-300 border border-neutral-700 font-medium text-xs">Hygiène 100% Stérile</span>
+              <span class="px-3 py-1 bg-neutral-800 rounded-full text-amber-300 border border-neutral-700 font-medium text-xs">Acupuncteurs Certifiés</span>
+              <span class="px-3 py-1 bg-neutral-800 rounded-full text-amber-300 border border-neutral-700 font-medium text-xs">Foot Medical Care</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: 3D Salon Virtual Tour (The Interactive rotating carousel in 3D Space) -->
+    <section id="gallery-3d" class="py-24 bg-neutral-950 text-white relative overflow-hidden transition-colors">
+      <div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
+        <div class="w-full h-full bg-[radial-gradient(ellipse_at_center,#ffffff11_0%,transparent_70%)]"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <span class="text-amber-400 font-bold tracking-widest text-xs uppercase block">VISITE VIRTUELLE</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white leading-tight">
+            Découvrez Notre Salon en 3D
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-400 font-sans max-w-xl mx-auto">
+            Utilisez les boutons de navigation pour faire tourner le salon en 3D et explorer chaque espace de notre centre de beauté de prestige.
+          </p>
+        </div>
+
+        <!-- 3D CAROUSEL WORKSPACE -->
+        <div class="relative w-full h-[380px] md:h-[480px] flex items-center justify-center perspective-1000 overflow-hidden">
+          
+          <!-- Carousel Stage -->
+          <div id="carousel-3d-stage" class="relative w-[280px] md:w-[350px] h-[350px] md:h-[430px] preserve-3d transition-transform duration-700 ease-out cursor-grab active:cursor-grabbing">
+            
+            <!-- Slide 1 -->
+            <div class="carousel-item-3d absolute inset-0 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-neutral-900 backface-hidden flex flex-col justify-end">
+              <img src="images/interior_1.jpg" alt="Salon Design 1" class="absolute inset-0 w-full h-full object-cover">
+              <div class="relative z-10 p-4 bg-gradient-to-t from-black via-black/50 to-transparent">
+                <span class="text-amber-400 text-[10px] font-bold uppercase tracking-wider">Mari Lay Tétouan</span>
+                <h4 class="text-white text-sm font-bold font-serif">Postes Maquillage Pro</h4>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item-3d absolute inset-0 rounded-2xl overflow-hidden border-2 border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-neutral-900 backface-hidden flex flex-col justify-end">
+              <img src="images/interior_2.jpg" alt="Salon Design 2" class="absolute inset-0 w-full h-full object-cover">
+              <div class="relative z-10 p-4 bg-gradient-to-t from-black via-black/50 to-transparent">
+                <span class="text-amber-400 text-[10px] font-bold uppercase tracking-wider">Mari Lay Tétouan</span>
+                <h4 class="text-white text-sm font-bold font-serif">Zone de Traitement Médical</h4>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item-3d absolute inset-0 rounded-2xl overflow-hidden border-2 border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-neutral-900 backface-hidden flex flex-col justify-end">
+              <img src="images/interior_3.jpg" alt="Salon Design 3" class="absolute inset-0 w-full h-full object-cover">
+              <div class="relative z-10 p-4 bg-gradient-to-t from-black via-black/50 to-transparent">
+                <span class="text-amber-400 text-[10px] font-bold uppercase tracking-wider">Mari Lay Tétouan</span>
+                <h4 class="text-white text-sm font-bold font-serif">Éclairage Annulaire Pro</h4>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-item-3d absolute inset-0 rounded-2xl overflow-hidden border-2 border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-neutral-900 backface-hidden flex flex-col justify-end">
+              <img src="images/interior_4.jpg" alt="Salon Design 4" class="absolute inset-0 w-full h-full object-cover">
+              <div class="relative z-10 p-4 bg-gradient-to-t from-black via-black/50 to-transparent">
+                <span class="text-amber-400 text-[10px] font-bold uppercase tracking-wider">Mari Lay Tétouan</span>
+                <h4 class="text-white text-sm font-bold font-serif">Confort & Équipements</h4>
+              </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="carousel-item-3d absolute inset-0 rounded-2xl overflow-hidden border-2 border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-neutral-900 backface-hidden flex flex-col justify-end">
+              <img src="images/interior_5.jpg" alt="Salon Design 5" class="absolute inset-0 w-full h-full object-cover">
+              <div class="relative z-10 p-4 bg-gradient-to-t from-black via-black/50 to-transparent">
+                <span class="text-amber-400 text-[10px] font-bold uppercase tracking-wider">Mari Lay Tétouan</span>
+                <h4 class="text-white text-sm font-bold font-serif">Miroirs et Design Moderne</h4>
+              </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="carousel-item-3d absolute inset-0 rounded-2xl overflow-hidden border-2 border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-neutral-900 backface-hidden flex flex-col justify-end">
+              <img src="images/interior_6.jpg" alt="Salon Design 6" class="absolute inset-0 w-full h-full object-cover">
+              <div class="relative z-10 p-4 bg-gradient-to-t from-black via-black/50 to-transparent">
+                <span class="text-amber-400 text-[10px] font-bold uppercase tracking-wider">Mari Lay Tétouan</span>
+                <h4 class="text-white text-sm font-bold font-serif">Hall d'attente Chaleureux</h4>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Controls for Carousel -->
+        <div class="flex items-center justify-center gap-6 mt-8">
+          <button id="carousel-prev" class="w-12 h-12 rounded-full border border-neutral-800 hover:border-amber-400 bg-neutral-900/50 hover:bg-neutral-900 text-white flex items-center justify-center hover:scale-110 transition-all shadow-md">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+          </button>
+          
+          <div class="text-xs font-bold text-amber-400 uppercase tracking-widest font-sans flex items-center gap-1">
+            <i data-lucide="rotate-3d" class="w-4 h-4 animate-spin" style="animation-duration: 8s;"></i>
+            <span>FAITES TOURNER EN DRAGANT</span>
+          </div>
+
+          <button id="carousel-next" class="w-12 h-12 rounded-full border border-neutral-800 hover:border-amber-400 bg-neutral-900/50 hover:bg-neutral-900 text-white flex items-center justify-center hover:scale-110 transition-all shadow-md">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: Instagram Interactive 3D Mockup Section -->
+    <section id="instagram" class="py-24 bg-white dark:bg-neutral-950 relative overflow-hidden transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          <!-- Left Column: Instagram Narrative Info -->
+          <div class="lg:col-span-6 space-y-6 order-last lg:order-first text-center lg:text-left">
+            <span class="text-rose-500 dark:text-amber-400 font-bold tracking-widest text-xs uppercase block">SUIVEZ NOTRE ACTUALITÉ</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-serif text-neutral-900 dark:text-white leading-tight">
+              Une Communauté <br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-pink-500 to-amber-500 dark:from-rose-400 dark:to-amber-400">De 116K Passionnées</span>
+            </h2>
+            <p class="text-neutral-600 dark:text-neutral-300 leading-relaxed font-sans text-sm sm:text-base">
+              Nous partageons quotidiennement nos incroyables transformations "avant/après", nos conseils de soins et notre atmosphère sur Instagram. Rejoignez la communauté <strong>@mari_lay_makeup_artist</strong> pour ne manquer aucun conseil exclusif ni aucune de nos promotions flash à Tétouan.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+              <a href="https://www.instagram.com/mari_lay_makeup_artist/" target="_blank" class="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 text-white font-extrabold tracking-wide shadow-xl shadow-pink-500/10 hover:scale-[1.03] transition-all duration-300">
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+                <span>Visiter notre Profil Instagram</span>
+              </a>
+              <a href="https://wa.me/212668500684" target="_blank" class="flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 text-sm font-bold hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all">
+                <i data-lucide="heart" class="w-4 h-4 text-rose-500"></i>
+                <span>Nous écrire sur WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive 3D Mockup of Instagram Screen -->
+          <div class="lg:col-span-6 flex justify-center items-center perspective-1000 py-12">
+            <!-- 3D Shadow Backdrop -->
+            <div class="absolute w-[70%] h-[80%] bg-pink-500/20 dark:bg-pink-950/10 rounded-3xl blur-3xl [transform:translateZ(-150px)]"></div>
+            
+            <!-- Instagram 3D Phone Screen Card -->
+            <div id="instagram-3d-card" class="relative w-[320px] sm:w-[350px] aspect-[9/16] bg-neutral-950 rounded-[40px] p-3 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] border-4 border-neutral-800 preserve-3d cursor-grab active:cursor-grabbing">
+              
+              <!-- Phone notch/camera -->
+              <div class="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-neutral-800 rounded-full z-30"></div>
+
+              <!-- Inner Screen (Mock of Instagram profile screenshot) -->
+              <div class="w-full h-full rounded-[30px] overflow-hidden bg-neutral-950 border border-neutral-900 relative z-20 flex flex-col justify-between text-white text-xs select-none">
+                
+                <!-- Instagram Header -->
+                <div class="p-4 pt-6 border-b border-neutral-900 flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 font-bold">
+                    <i data-lucide="chevron-left" class="w-4 h-4 text-neutral-400"></i>
+                    <span>mari_lay_makeup_artist</span>
+                  </div>
+                  <div class="flex gap-4">
+                    <i data-lucide="bell" class="w-4.5 h-4.5"></i>
+                    <i data-lucide="more-horizontal" class="w-4.5 h-4.5"></i>
+                  </div>
+                </div>
+
+                <!-- Profile Body Scrollable Area (Static replica of the screenshot) -->
+                <div class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-none">
+                  
+                  <!-- Profile Main Info -->
+                  <div class="flex items-center gap-4">
+                    <!-- Glowing Avatar -->
+                    <div class="w-20 h-20 rounded-full p-[3px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+                      <div class="w-full h-full rounded-full overflow-hidden border-2 border-black bg-white">
+                        <img src="images/logo.jpg" alt="Mari Lay Profile" class="w-full h-full object-cover mix-blend-multiply">
+                      </div>
+                    </div>
+                    <!-- Counts -->
+                    <div class="flex-1 flex justify-around text-center">
+                      <div>
+                        <div class="font-extrabold text-sm text-white">195</div>
+                        <div class="text-[9px] text-neutral-400 uppercase font-semibold">Publications</div>
+                      </div>
+                      <div>
+                        <div class="font-extrabold text-sm text-white">116K</div>
+                        <div class="text-[9px] text-neutral-400 uppercase font-semibold">Abonnés</div>
+                      </div>
+                      <div>
+                        <div class="font-extrabold text-sm text-white">1.193</div>
+                        <div class="text-[9px] text-neutral-400 uppercase font-semibold">Suivis</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Bio info -->
+                  <div class="space-y-1">
+                    <h4 class="font-bold text-sm text-white">centre de beaute Mari lay</h4>
+                    <span class="text-xs text-neutral-400 font-medium">Artiste</span>
+                    <p class="text-[11px] text-neutral-300 leading-relaxed">
+                      Esthétique Médicale, Soins Complets ÉPILATION LASER<br>
+                      Hijama, Hydrafacial, Microneedling, PRP, Mésothérapie peeling | Réservez : <strong class="text-amber-400">+212 (0) 668 500 684</strong><br>
+                      📍 Av ibn moetaz b . rurob louada, Tétouan
+                    </p>
+                  </div>
+
+                  <!-- Instagram Action Buttons -->
+                  <div class="grid grid-cols-2 gap-2 pt-2">
+                    <a href="https://www.instagram.com/mari_lay_makeup_artist/" target="_blank" class="py-2 rounded-lg bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 text-center font-bold text-[11px] text-white flex items-center justify-center gap-1.5 transition-all">
+                      <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+                      <span>S'abonner</span>
+                    </a>
+                    <a href="https://wa.me/212668500684" target="_blank" class="py-2 rounded-lg bg-gradient-to-r from-rose-500 to-pink-500 text-center font-bold text-[11px] text-white flex items-center justify-center gap-1.5 transition-all shadow">
+                      <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                      <span>Message</span>
+                    </a>
+                  </div>
+
+                  <!-- Grid of real photos from salon (interior view mockups) -->
+                  <div class="grid grid-cols-3 gap-1 pt-2">
+                    <div class="aspect-square rounded-md overflow-hidden bg-neutral-900 border border-neutral-800 hover:scale-105 transition-all cursor-pointer">
+                      <img src="images/interior_1.jpg" alt="Post 1" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square rounded-md overflow-hidden bg-neutral-900 border border-neutral-800 hover:scale-105 transition-all cursor-pointer">
+                      <img src="images/interior_2.jpg" alt="Post 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square rounded-md overflow-hidden bg-neutral-900 border border-neutral-800 hover:scale-105 transition-all cursor-pointer">
+                      <img src="images/interior_3.jpg" alt="Post 3" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square rounded-md overflow-hidden bg-neutral-900 border border-neutral-800 hover:scale-105 transition-all cursor-pointer">
+                      <img src="images/interior_4.jpg" alt="Post 4" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square rounded-md overflow-hidden bg-neutral-900 border border-neutral-800 hover:scale-105 transition-all cursor-pointer">
+                      <img src="images/interior_5.jpg" alt="Post 5" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square rounded-md overflow-hidden bg-neutral-900 border border-neutral-800 hover:scale-105 transition-all cursor-pointer">
+                      <img src="images/interior_6.jpg" alt="Post 6" class="w-full h-full object-cover">
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Footer Phone navigation bar -->
+                <div class="p-3 border-t border-neutral-900 flex justify-around text-neutral-400 bg-neutral-950">
+                  <i data-lucide="home" class="w-5 h-5"></i>
+                  <i data-lucide="search" class="w-5 h-5"></i>
+                  <i data-lucide="plus-square" class="w-5 h-5"></i>
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                  <div class="w-5 h-5 rounded-full overflow-hidden border border-neutral-400 bg-white">
+                    <img src="images/logo.jpg" alt="Profile" class="w-full h-full object-cover mix-blend-multiply">
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 3D Accessories elements floating around -->
+              <div class="absolute -top-4 -left-12 px-3 py-1.5 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-xl shadow-lg text-[10px] font-bold flex items-center gap-1 border border-neutral-100 dark:border-neutral-700 [transform:translateZ(30px)]">
+                <i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-500"></i>
+                <span>116K abonnées</span>
+              </div>
+              <div class="absolute bottom-16 -right-12 px-3 py-1.5 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-xl shadow-lg text-[10px] font-bold flex items-center gap-1 border border-neutral-100 dark:border-neutral-700 [transform:translateZ(40px)] animate-pulse">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-blue-500 fill-blue-500"></i>
+                <span>Salon de Prestige</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Contact / Booking with Direct Map and Coordinates -->
+    <section id="contact" class="py-24 bg-rose-50/50 dark:bg-neutral-900 relative overflow-hidden transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          
+          <!-- Left Column: Elegant Booking Form -->
+          <div class="lg:col-span-5 bg-white dark:bg-neutral-950 p-8 sm:p-10 rounded-3xl border border-rose-100 dark:border-neutral-800 shadow-2xl relative">
+            <div class="space-y-2 mb-8">
+              <span class="text-rose-500 dark:text-amber-400 font-bold tracking-widest text-xs uppercase block">RÉSERVATION FACILE</span>
+              <h3 class="text-2xl font-bold font-serif text-neutral-900 dark:text-white">Prendre Rendez-vous</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">Remplissez les informations et notre équipe vous recontactera immédiatement sur WhatsApp pour confirmer.</p>
+            </div>
+
+            <form id="booking-form" class="space-y-5">
+              <div>
+                <label for="name" class="block text-xs font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider mb-2">Nom Complet</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400"><i data-lucide="user" class="w-4 h-4"></i></span>
+                  <input type="text" id="name" required class="block w-full pl-10 pr-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900 text-neutral-900 dark:text-white text-xs focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all" placeholder="Votre nom complet">
+                </div>
+              </div>
+
+              <div>
+                <label for="phone" class="block text-xs font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider mb-2">Téléphone (WhatsApp)</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400"><i data-lucide="phone" class="w-4 h-4"></i></span>
+                  <input type="tel" id="phone" required class="block w-full pl-10 pr-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900 text-neutral-900 dark:text-white text-xs focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all" placeholder="+212 600 000000">
+                </div>
+              </div>
+
+              <div>
+                <label for="service" class="block text-xs font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider mb-2">Service Souhaité</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400"><i data-lucide="heart" class="w-4 h-4"></i></span>
+                  <select id="service" class="block w-full pl-10 pr-10 py-3 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900 text-neutral-900 dark:text-white text-xs focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer">
+                    <option value="Esthétique Médicale">Esthétique Médicale (PRP, Microneedling...)</option>
+                    <option value="Épilation Laser">Épilation Laser Définitive</option>
+                    <option value="Hijama & Cupping">Hijama & Acupuncture</option>
+                    <option value="Makeup Artist / Beauté">Makeup Artist / Beauté & Coiffure</option>
+                    <option value="Autre Demande">Autre Demande / Conseil</option>
+                  </select>
+                  <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-neutral-400"><i data-lucide="chevron-down" class="w-4 h-4"></i></span>
+                </div>
+              </div>
+
+              <div>
+                <label for="message" class="block text-xs font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider mb-2">Note spéciale (Optionnel)</label>
+                <div class="relative">
+                  <span class="absolute top-3 left-3 text-neutral-400"><i data-lucide="align-left" class="w-4 h-4"></i></span>
+                  <textarea id="message" rows="3" class="block w-full pl-10 pr-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900 text-neutral-900 dark:text-white text-xs focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none transition-all resize-none" placeholder="Une date souhaitée, des précisions..."></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white font-extrabold tracking-wide shadow-xl transform hover:-translate-y-0.5 transition-all">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+                <span>Prendre RDV via WhatsApp</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Right Column: Location details & Google Maps -->
+          <div class="lg:col-span-7 space-y-8">
+            <div class="space-y-4">
+              <span class="text-rose-500 dark:text-amber-400 font-bold tracking-widest text-xs uppercase block">NOTRE LOCALISATION</span>
+              <h2 class="text-3xl font-bold font-serif text-neutral-900 dark:text-white">
+                Nous Visiter à Tétouan
+              </h2>
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed max-w-xl">
+                Notre institut d'esthétique et de bien-être vous accueille dans un cadre moderne et confortable au centre de la ville de Tétouan. Un accès facile et un stationnement sécurisé sont disponibles.
+              </p>
+            </div>
+
+            <!-- Contact Grid Details -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Location item -->
+              <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-neutral-950 border border-rose-100 dark:border-neutral-800 shadow-lg">
+                <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-rose-50 dark:bg-neutral-900 flex items-center justify-center text-rose-500 dark:text-amber-400 border border-rose-100 dark:border-neutral-800">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-neutral-900 dark:text-white font-serif text-xs uppercase tracking-wider">Adresse</h4>
+                  <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
+                    Av ibn moetaz b . rurob louada,<br>
+                    Tétouan, Maroc
+                  </p>
+                </div>
+              </div>
+
+              <!-- Phone / WhatsApp item -->
+              <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-neutral-950 border border-rose-100 dark:border-neutral-800 shadow-lg">
+                <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-amber-50 dark:bg-neutral-900 flex items-center justify-center text-amber-500 dark:text-amber-400 border border-amber-200/50 dark:border-neutral-800">
+                  <i data-lucide="phone-call" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-neutral-900 dark:text-white font-serif text-xs uppercase tracking-wider">Téléphone / WhatsApp</h4>
+                  <a href="tel:+212668500684" class="block text-xs font-bold text-neutral-900 dark:text-white mt-1 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">
+                    +212 (0) 668 500 684
+                  </a>
+                  <p class="text-[10px] text-neutral-400 mt-0.5">Appel direct ou message rapide</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Google Maps Embed Representation (Interactive and responsive) -->
+            <div class="w-full rounded-3xl overflow-hidden border border-rose-100 dark:border-neutral-800 shadow-2xl relative bg-white h-[280px] sm:h-[350px]">
+              <!-- Embed a custom Leaflet JS map or clean premium responsive layout showcasing Tetouan center -->
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12975.385786884633!2d-5.381395999999999!3d35.572111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0b4269e80277df%3A0x6b4ef8fa9074b88!2zVMOpdG91YW4sIE1hcm9j!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" 
+                class="w-full h-full border-0 grayscale dark:invert dark:opacity-85" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              
+              <!-- Map floating card info -->
+              <div class="absolute bottom-4 left-4 bg-neutral-950/90 backdrop-blur-md text-white p-4 rounded-2xl border border-white/10 shadow-xl max-w-xs z-10 hidden sm:block">
+                <h5 class="font-bold text-xs font-serif text-amber-400 flex items-center gap-1">
+                  <i data-lucide="navigation" class="w-3.5 h-3.5 animate-pulse"></i>
+                  Centre de Beauté Mari Lay
+                </h5>
+                <p class="text-[10px] text-neutral-300 mt-1.5 leading-relaxed">
+                  Venez nous rendre visite au coeur de Tétouan. Un cadre de rêve pour prendre soin de votre corps.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-950 text-neutral-400 py-16 border-t border-neutral-900 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center text-center md:text-left">
+          
+          <!-- Column 1: Brand & Logo -->
+          <div class="md:col-span-4 space-y-4">
+            <a href="#" class="flex items-center justify-center md:justify-start gap-3 group">
+              <div class="w-10 h-10 rounded-full overflow-hidden border border-amber-400 bg-white">
+                <img src="images/logo.jpg" alt="Logo" class="w-full h-full object-cover mix-blend-multiply">
+              </div>
+              <span class="text-lg font-bold font-serif tracking-widest text-white">Mari Lay</span>
+            </a>
+            <p class="text-xs text-neutral-500 max-w-xs leading-relaxed">
+              Esthétique médicale, soins complets, épilation laser de prestige, et bien-être traditionnel au cœur de Tétouan.
+            </p>
+          </div>
+
+          <!-- Column 2: Quick links -->
+          <div class="md:col-span-4 flex justify-center gap-8 font-semibold text-xs uppercase tracking-widest">
+            <a href="#about" class="hover:text-amber-400 transition-colors">À propos</a>
+            <a href="#services" class="hover:text-amber-400 transition-colors">Services</a>
+            <a href="#gallery-3d" class="hover:text-amber-400 transition-colors">Visite 3D</a>
+            <a href="#instagram" class="hover:text-amber-400 transition-colors">Instagram</a>
+          </div>
+
+          <!-- Column 3: Socials -->
+          <div class="md:col-span-4 flex flex-col items-center md:items-end gap-4">
+            <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold">Suivez-nous</span>
+            <div class="flex gap-4">
+              <a href="https://www.instagram.com/mari_lay_makeup_artist/" target="_blank" class="w-10 h-10 rounded-full bg-neutral-900 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-600 text-white flex items-center justify-center border border-neutral-800 hover:border-transparent hover:scale-110 transition-all shadow-md">
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+              </a>
+              <a href="https://wa.me/212668500684" target="_blank" class="w-10 h-10 rounded-full bg-neutral-900 hover:bg-green-600 text-white flex items-center justify-center border border-neutral-800 hover:border-transparent hover:scale-110 transition-all shadow-md">
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+              </a>
+            </div>
+            <p class="text-[10px] text-neutral-600">© 2026 Mari Lay Makeup Artist. Tous droits réservés.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Image zoom Modal container -->
+  <div id="image-modal" class="fixed inset-0 bg-neutral-950/90 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <button onclick="closeModal()" class="absolute top-6 right-6 w-12 h-12 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-white flex items-center justify-center cursor-pointer transition-all">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <div class="max-w-4xl max-h-[85vh] rounded-2xl overflow-hidden border-2 border-amber-400 bg-neutral-950 shadow-2xl relative">
+      <img id="modal-img" src="" alt="Zoomed view" class="w-auto h-auto max-w-full max-h-[85vh] object-contain">
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
