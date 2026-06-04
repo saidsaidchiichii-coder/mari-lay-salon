@@ -86,6 +86,7 @@
           <a href="#about" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">À Propos</a>
           <a href="#services" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Services</a>
           <a href="#gallery-3d" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Visite 3D</a>
+          <a href="#offres" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Offres</a>
           <a href="#instagram" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Instagram</a>
           <a href="#contact" class="text-neutral-600 dark:text-neutral-300 hover:text-rose-500 dark:hover:text-amber-400 transition-colors">Contact</a>
         </div>
@@ -115,6 +116,7 @@
         <a href="#about" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">À Propos</a>
         <a href="#services" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Services</a>
         <a href="#gallery-3d" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Visite 3D</a>
+        <a href="#offres" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Offres</a>
         <a href="#instagram" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Instagram</a>
         <a href="#contact" class="block py-2 px-3 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-rose-500">Contact</a>
         <a href="https://wa.me/212668500684" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-rose-500 dark:bg-amber-500 text-white font-bold text-center">
@@ -600,6 +602,79 @@
           <button id="carousel-next" class="w-12 h-12 rounded-full border border-neutral-800 hover:border-amber-400 bg-neutral-900/50 hover:bg-neutral-900 text-white flex items-center justify-center hover:scale-110 transition-all shadow-md">
             <i data-lucide="chevron-right" class="w-6 h-6"></i>
           </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Offres & Tarifs (Affiches officielles) -->
+    <section id="offres" class="py-24 bg-gradient-to-b from-rose-50/50 to-white dark:from-neutral-900 dark:to-neutral-950 relative overflow-hidden transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <span class="text-rose-500 dark:text-amber-400 font-bold tracking-widest text-xs uppercase block">NOS OFFRES & TARIFS</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-serif text-neutral-900 dark:text-white leading-tight">
+            Découvrez Nos <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-pink-500 to-amber-500 dark:from-rose-400 dark:to-amber-400">Affiches Officielles</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-sans max-w-xl mx-auto">
+            Cliquez sur une affiche pour l'agrandir et consulter nos prestations, promotions et tarifs en détail.
+          </p>
+        </div>
+
+        <!-- Posters Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Microblading / Sourcils -->
+          <div onclick="openModal('images/microblading_poster.jpg')" class="group cursor-pointer relative rounded-2xl overflow-hidden border border-rose-100 dark:border-neutral-800 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all bg-white dark:bg-neutral-900">
+            <div class="aspect-[9/16] overflow-hidden">
+              <img src="images/microblading_poster.jpg" alt="Microshading, Microblading & Nanoblading - Tarifs Sourcils" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <span class="text-white text-sm font-bold font-serif">Sourcils : Micro/Nanoblading</span>
+            </div>
+          </div>
+
+          <!-- Special Offer -->
+          <div onclick="openModal('images/special_offer.jpg')" class="group cursor-pointer relative rounded-2xl overflow-hidden border border-rose-100 dark:border-neutral-800 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all bg-white dark:bg-neutral-900">
+            <div class="aspect-[9/16] overflow-hidden">
+              <img src="images/special_offer.jpg" alt="Offre Spéciale Hydrafacial + PRP + Microneedling" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="absolute top-3 left-3 px-2.5 py-1 bg-amber-400 text-neutral-950 text-[10px] font-bold rounded-full uppercase tracking-wider shadow">Promo</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <span class="text-white text-sm font-bold font-serif">Hydrafacial + PRP + Microneedling</span>
+            </div>
+          </div>
+
+          <!-- Price List -->
+          <div onclick="openModal('images/price_list.jpg')" class="group cursor-pointer relative rounded-2xl overflow-hidden border border-rose-100 dark:border-neutral-800 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all bg-white dark:bg-neutral-900">
+            <div class="aspect-[9/16] overflow-hidden">
+              <img src="images/price_list.jpg" alt="Liste des prix des soins du visage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <span class="text-white text-sm font-bold font-serif">Tarifs des Soins du Visage</span>
+            </div>
+          </div>
+
+          <!-- Pack Offer -->
+          <div onclick="openModal('images/pack_offer.jpg')" class="group cursor-pointer relative rounded-2xl overflow-hidden border border-rose-100 dark:border-neutral-800 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all bg-white dark:bg-neutral-900">
+            <div class="aspect-[9/16] overflow-hidden">
+              <img src="images/pack_offer.jpg" alt="Pack Hydrafacial détox + Microneedling + Mésothérapie - 4 séances" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="absolute top-3 left-3 px-2.5 py-1 bg-amber-400 text-neutral-950 text-[10px] font-bold rounded-full uppercase tracking-wider shadow">Pack</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <span class="text-white text-sm font-bold font-serif">Pack 4 Séances · 2999dh</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-12">
+          <a href="https://wa.me/212668500684" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-rose-500 to-rose-600 dark:from-amber-400 dark:to-amber-500 text-white dark:text-neutral-950 font-bold text-sm shadow-lg hover:scale-105 transition-all">
+            <span>Réserver via WhatsApp</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </a>
         </div>
 
       </div>
