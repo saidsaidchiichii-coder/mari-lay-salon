@@ -202,6 +202,7 @@ body {
 .reveal-3d.in-view {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 /* Parallax glow orbs respond to mouse (transition for smoothness) */
@@ -290,7 +291,6 @@ nav { transform-style: preserve-3d; }
 
 /* Shine sweep across cards/posters */
 .shine {
-  position: relative;
   overflow: hidden;
 }
 .shine::before {

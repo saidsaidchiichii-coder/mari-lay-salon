@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* 2) Scroll-triggered 3D fold-in reveal for section content */
   if (!reduce && 'IntersectionObserver' in window) {
     const revealTargets = [];
-    document.querySelectorAll('section').forEach((sec) => {
+    document.querySelectorAll('section:not(#gallery-3d):not(#about)').forEach((sec) => {
       sec.querySelectorAll(':scope > div').forEach((d) => revealTargets.push(d));
     });
 
@@ -405,7 +405,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* 2) Shine sweep on image cards */
   const shineSel = [
-    '.carousel-item-3d',
     '.active-3d-stack-card',
     '[onclick^="openModal"]'
   ];
@@ -458,4 +457,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }, { passive: true });
   }
+
+  /* 7) Safety: re-arrange the 3D carousel after layout settles */
+  setTimeout(() => window.dispatchEvent(new Event('resize')), 700);
+  window.addEventListener('load', () => window.dispatchEvent(new Event('resize')));
 });
