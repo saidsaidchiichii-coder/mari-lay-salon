@@ -526,9 +526,30 @@
 
         <!-- 3D CAROUSEL WORKSPACE -->
         <div class="relative w-full h-[380px] md:h-[480px] flex items-center justify-center perspective-1000 overflow-hidden">
+
+          <!-- Flanking featured offer posters to fill the empty space (desktop) -->
+          <div class="hidden lg:block absolute left-2 xl:left-12 top-1/2 -translate-y-1/2 w-[210px] xl:w-[250px] z-0">
+            <div class="live-3d rotate-[-9deg] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] border border-amber-400/30 shine relative opacity-90 hover:opacity-100 transition-opacity">
+              <img src="images/special_offer.jpg" alt="Offre Spéciale Hydrafacial + PRP + Microneedling" class="w-full h-full object-cover">
+              <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+                <span class="text-amber-400 text-[10px] font-bold uppercase tracking-wider">Offre Spéciale</span>
+                <h4 class="text-white text-xs font-bold font-serif">Hydrafacial + PRP</h4>
+              </div>
+            </div>
+          </div>
+          <div class="hidden lg:block absolute right-2 xl:right-12 top-1/2 -translate-y-1/2 w-[210px] xl:w-[250px] z-0">
+            <div class="live-3d rotate-[9deg] aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] border border-amber-400/30 shine relative opacity-90 hover:opacity-100 transition-opacity">
+              <img src="images/pack_offer.jpg" alt="Pack Beauté 4 séances" class="w-full h-full object-cover">
+              <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+                <span class="text-amber-400 text-[10px] font-bold uppercase tracking-wider">Pack Beauté</span>
+                <h4 class="text-white text-xs font-bold font-serif">4 Séances · 2999 dh</h4>
+              </div>
+            </div>
+          </div>
+
           
           <!-- Carousel Stage -->
-          <div id="carousel-3d-stage" class="relative w-[280px] md:w-[350px] h-[350px] md:h-[430px] preserve-3d transition-transform duration-700 ease-out cursor-grab active:cursor-grabbing">
+          <div id="carousel-3d-stage" class="relative z-10 w-[280px] md:w-[350px] h-[350px] md:h-[430px] preserve-3d transition-transform duration-700 ease-out cursor-grab active:cursor-grabbing">
             
             <!-- Slide 1 -->
             <div class="carousel-item-3d absolute inset-0 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-neutral-900 backface-hidden flex flex-col justify-end">
