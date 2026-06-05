@@ -297,12 +297,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* 1) Animated gradient on pure-text headings */
-  document.querySelectorAll('h1, h2').forEach((h) => {
-    if (h.childElementCount === 0 && h.textContent.trim().length) {
-      h.classList.add('text-3d-gradient');
-    }
-  });
+  /* 1) Classic headings — 3D text effects removed per request */
+
 
   /* 2) Scroll-triggered 3D fold-in reveal for section content */
   if (!reduce && 'IntersectionObserver' in window) {
@@ -445,10 +441,8 @@ document.addEventListener('DOMContentLoaded', function () {
     navLogo.parentElement.classList.add('live-3d');
   }
 
-  /* 5) Extruded 3D depth on headings that aren't gradient-filled */
-  document.querySelectorAll('h1, h2').forEach((h) => {
-    if (!h.classList.contains('text-3d-gradient')) h.classList.add('extrude-3d');
-  });
+  /* 5) (removed) extruded 3D heading effect — classic text now */
+
 
   /* 6) Scroll-driven parallax depth on section headings */
   if (!reduce && 'IntersectionObserver' in window) {
