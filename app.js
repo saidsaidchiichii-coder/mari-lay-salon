@@ -372,3 +372,96 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 });
+
+
+
+/* ==========================================================================
+   ✦✦ MAX-3D & MOTION LAYER v2 (added) ✦✦
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 1) Inject floating 3D background shapes */
+  if (!reduce) {
+    const scene = document.createElement('div');
+    scene.className = 'scene-3d';
+    const conf = [
+      { s: 120, t: '8%',  l: '6%',  a: 'spin3dA 22s linear infinite' },
+      { s: 80,  t: '22%', l: '82%', a: 'spin3dB 18s linear infinite' },
+      { s: 160, t: '55%', l: '12%', a: 'spin3dA 28s linear infinite' },
+      { s: 60,  t: '70%', l: '70%', a: 'spin3dB 16s linear infinite' },
+      { s: 100, t: '40%', l: '48%', a: 'spin3dA 25s linear infinite' },
+      { s: 70,  t: '85%', l: '35%', a: 'spin3dB 20s linear infinite' },
+      { s: 90,  t: '12%', l: '60%', a: 'spin3dA 24s linear infinite' }
+    ];
+    conf.forEach((c) => {
+      const d = document.createElement('div');
+      d.className = 'shape-3d';
+      d.style.width = c.s + 'px';
+      d.style.height = c.s + 'px';
+      d.style.top = c.t;
+      d.style.left = c.l;
+      d.style.animation = c.a + ', driftY ' + (10 + (c.s % 7)) + 's ease-in-out infinite';
+      scene.appendChild(d);
+    });
+    document.body.insertBefore(scene, document.body.firstChild);
+  }
+
+  /* 2) Shine sweep on image cards */
+  const shineSel = [
+    '.carousel-item-3d',
+    '.active-3d-stack-card',
+    '[onclick^="openModal"]'
+  ];
+  document.querySelectorAll(shineSel.join(',')).forEach((el) => {
+    if (el.tagName === 'DIV') el.classList.add('shine');
+  });
+  // Instagram grid posts: need relative + shine (safe, no positioned children)
+  document.querySelectorAll('.grid .aspect-square.rounded-md').forEach((el) => {
+    el.classList.add('relative', 'shine');
+  });
+
+  /* 3) Mouse-tilt 3D on poster/carousel images */
+  function attachTilt(img, max) {
+    img.classList.add('tilt-img');
+    const host = img.closest('div');
+    const target = host || img;
+    target.addEventListener('mousemove', (e) => {
+      const r = img.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      img.style.transform = `perspective(700px) rotateX(${(-py * max).toFixed(2)}deg) rotateY(${(px * max).toFixed(2)}deg) scale(1.06)`;
+    });
+    target.addEventListener('mouseleave', () => { img.style.transform = ''; });
+  }
+  if (!reduce) {
+    document.querySelectorAll('.carousel-item-3d img').forEach((i) => attachTilt(i, 14));
+    document.querySelectorAll('[onclick^="openModal"] img').forEach((i) => attachTilt(i, 12));
+  }
+
+  /* 4) Gentle continuous 3D life on the nav logo */
+  const navLogo = document.querySelector('nav a img');
+  if (navLogo && navLogo.parentElement && !reduce) {
+    navLogo.parentElement.classList.add('live-3d');
+  }
+
+  /* 5) Extruded 3D depth on headings that aren't gradient-filled */
+  document.querySelectorAll('h1, h2').forEach((h) => {
+    if (!h.classList.contains('text-3d-gradient')) h.classList.add('extrude-3d');
+  });
+
+  /* 6) Scroll-driven parallax depth on section headings */
+  if (!reduce && 'IntersectionObserver' in window) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const sc = window.scrollY;
+        const scene = document.querySelector('.scene-3d');
+        if (scene) scene.style.transform = `translateY(${sc * 0.08}px)`;
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+});
