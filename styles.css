@@ -155,3 +155,77 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+/* ==========================================================================
+   ✦ ENHANCED 3D & MOTION LAYER (added) ✦
+   ========================================================================== */
+
+/* Animated gradient text for big headings */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.text-3d-gradient {
+  background: linear-gradient(110deg, #f46f7c, #d4af37, #e04554, #d4af37, #f46f7c);
+  background-size: 280% 280%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradientShift 7s ease infinite;
+  text-shadow: 0 1px 0 rgba(212,175,55,0.08);
+}
+
+/* Continuous gentle 3D float for accents/cards */
+@keyframes float3d {
+  0%, 100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+  50%      { transform: translateY(-12px) rotateX(4deg) rotateZ(-1deg); }
+}
+.float-3d { animation: float3d 6s ease-in-out infinite; will-change: transform; }
+
+/* Soft 3D depth pop for any card */
+@keyframes popDepth {
+  0%, 100% { transform: translateZ(0); }
+  50%      { transform: translateZ(24px); }
+}
+
+/* Scroll reveal with 3D fold-in (applied via app.js) */
+.reveal-3d {
+  opacity: 0;
+  transform: perspective(1200px) translateY(48px) rotateX(18deg) scale(0.96);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+}
+.reveal-3d.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* Parallax glow orbs respond to mouse (transition for smoothness) */
+.glow-orb { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+
+/* 3D push for primary buttons */
+.hover-3d {
+  transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+}
+.hover-3d:hover {
+  transform: translateY(-4px) rotateX(8deg) scale(1.04);
+  box-shadow: 0 22px 45px -12px rgba(244,111,124,0.45);
+}
+
+/* Carousel slides: show full posters nicely on dark */
+.carousel-item-3d img { object-fit: cover; }
+
+/* Logo / nav subtle 3D lift on scroll */
+nav { transform-style: preserve-3d; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .text-3d-gradient { animation: none; }
+  .float-3d { animation: none; }
+  .reveal-3d { opacity: 1; transform: none; transition: none; }
+}

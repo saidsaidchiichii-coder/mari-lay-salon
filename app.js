@@ -287,3 +287,88 @@ if (imageModal) {
     }
   });
 }
+
+
+
+/* ==========================================================================
+   ✦ ENHANCED 3D & MOTION LAYER (added) ✦
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 1) Animated gradient on pure-text headings */
+  document.querySelectorAll('h1, h2').forEach((h) => {
+    if (h.childElementCount === 0 && h.textContent.trim().length) {
+      h.classList.add('text-3d-gradient');
+    }
+  });
+
+  /* 2) Scroll-triggered 3D fold-in reveal for section content */
+  if (!reduce && 'IntersectionObserver' in window) {
+    const revealTargets = [];
+    document.querySelectorAll('section').forEach((sec) => {
+      sec.querySelectorAll(':scope > div').forEach((d) => revealTargets.push(d));
+    });
+
+    revealTargets.forEach((el) => el.classList.add('reveal-3d'));
+
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    revealTargets.forEach((el) => io.observe(el));
+
+    // Safety fallback: ensure everything is visible after 2.5s no matter what
+    setTimeout(() => {
+      revealTargets.forEach((el) => el.classList.add('in-view'));
+    }, 2500);
+  }
+
+  /* 3) Mouse parallax for atmospheric glow orbs */
+  const orbs = document.querySelectorAll('div.fixed.pointer-events-none');
+  orbs.forEach((o) => o.classList.add('glow-orb'));
+  if (!reduce && orbs.length) {
+    let raf = null;
+    window.addEventListener('mousemove', (ev) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const cx = (ev.clientX / window.innerWidth - 0.5);
+        const cy = (ev.clientY / window.innerHeight - 0.5);
+        orbs.forEach((o, i) => {
+          const depth = (i + 1) * 28;
+          o.style.transform = `translate3d(${cx * depth}px, ${cy * depth}px, 0)`;
+        });
+        raf = null;
+      });
+    });
+  }
+
+  /* 4) Give primary CTA buttons a 3D push */
+  document.querySelectorAll('a[href*="wa.me"], a[href="#contact"], #theme-toggle').forEach((b) => {
+    b.classList.add('hover-3d');
+  });
+
+  /* 5) Auto-rotate the 3D carousel (pauses on interaction) */
+  const carNext = document.getElementById('carousel-next');
+  const carWorkspace = document.getElementById('carousel-3d-stage');
+  if (!reduce && carNext && carWorkspace) {
+    let paused = false;
+    let timer = setInterval(() => { if (!paused) carNext.click(); }, 4500);
+    const pause = () => { paused = true; };
+    const resume = () => { setTimeout(() => { paused = false; }, 6000); };
+    ['mousedown', 'touchstart', 'mouseenter'].forEach((ev) =>
+      carWorkspace.addEventListener(ev, pause));
+    ['mouseup', 'touchend', 'mouseleave'].forEach((ev) =>
+      carWorkspace.addEventListener(ev, resume));
+    [carNext, document.getElementById('carousel-prev')].forEach((btn) => {
+      if (btn) btn.addEventListener('click', () => { paused = true; resume(); });
+    });
+  }
+
+});
