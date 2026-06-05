@@ -131,16 +131,30 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    // Next/Prev Buttons
+    // Next/Prev Buttons with smooth transition enforcement
     nextBtn.addEventListener('click', () => {
+      stage.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
       currentRotation -= (360 / totalSlides);
       updateStage();
     });
 
     prevBtn.addEventListener('click', () => {
+      stage.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
       currentRotation += (360 / totalSlides);
       updateStage();
     });
+
+    // Mouse Wheel / Trackpad Scroll rotation support
+    stage.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      stage.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+      if (e.deltaY > 0) {
+        currentRotation -= (360 / totalSlides);
+      } else {
+        currentRotation += (360 / totalSlides);
+      }
+      updateStage();
+    }, { passive: false });
 
     // Touch and Drag Rotation logic
     let isDragging = false;
